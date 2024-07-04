@@ -1,0 +1,66 @@
+<app-layout-admin></app-layout-admin>>
+
+<div class="body">
+ 
+ 
+  <div class="container">
+    <div class="page-inner">
+      <div
+        class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
+      >
+        <div class="row">
+    <h2>{{ idcourant ? 'Modifier' : 'Ajouter' }} un Administrateur</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="login">Login:</label>
+        <input type="text" id="login" formControlName="login" class="form-control" required>
+        <div *ngIf="form.get('login')?.invalid && (form.get('login')?.dirty || form.get('login')?.touched)">
+          <div *ngIf="form.get('login')?.errors?.['required']">
+            Login est requis.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" class="form-control" required>
+        <div *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
+          <div *ngIf="form.get('password')?.errors?.['required']">
+            Password est requis.
+          </div>
+        </div>
+      </div>
+      &nbsp;&nbsp;  <button type="submit" class="btn btn-primary">{{ idcourant ? 'Mettre à jour' : 'Ajouter' }}</button>
+      
+    </form>
+      </div>
+    </div> 
+
+    <style>
+      button{
+margin-right: 100px;
+      }
+      .body {
+        display: flex;
+        position: relative;
+      }
+      
+      .sidebar {
+        width: 250px;
+        background-color: #f4f4f4;
+        height: 100vh;
+      }
+      
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+      }
+      
+      .container {
+        margin-top: 0;
+        max-height: none;
+        margin-top: -700px;
+      }
+      
+      
+      </style>
+

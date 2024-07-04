@@ -1,0 +1,39 @@
+@media screen and (min-width: 992px) {
+    .sidebar_minimize.sidebar_minimize_hover .sidebar .logo-header .nav-toggle {
+        right: 18px !important;
+        transform: translateX(0) !important;
+        left: unset !important;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .sidebar_minimize .logo-header .nav-toggle {
+        position: absolute;
+        left: 50% !important;
+        transform: translateX(-50%);
+        height: 100%;
+        right: 0 !important;
+    }
+}
+
+.logo-header .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 18px;
+    z-index: 5;
+}
+
+.logo-header[_ngcontent-ng-c1112071832] .nav-toggle[_ngcontent-ng-c1112071832] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 18px;
+    z-index: 5;
+}

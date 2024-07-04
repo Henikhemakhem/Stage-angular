@@ -1,0 +1,168 @@
+
+<app-layout-admin></app-layout-admin>    
+<div class="body">
+
+    <div class="site-wrap" id="home-section">
+
+
+
+  
+      <div class="site-section bg-light">
+        <div class="container">
+          <div class="row mb-5 align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+           
+
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-12">
+              
+            </div>
+            <br>
+            <br><br><br><br>
+            <div class="col-lg-8">
+              <div class="heading mb-4">
+                <span class="caption">Latest</span>
+                <h2>Tutorials</h2>
+              
+               
+            </div><br>
+              <form class="d-flex search-form" (ngSubmit)="search()">
+                <input type="search" class="form-control mr-2" placeholder="Search subjects" [(ngModel)]="searchTerm" name="searchTerm">
+                <button type="button" class="btn btn-primary px-4" (click)="search()">Search</button>
+              </form>
+              <br><br>
+              <a class="btn btn-success" routerLink="/formation/ajout">
+                <i class="fas fa-plus-circle"></i> Create New Formation
+              </a><br>
+              <div *ngFor="let formation of filteredFormations" class="formation-card">
+                <img [src]="formation.image" alt="{{ formation.title }}" width="200">
+                <div class="formation-header">
+                  <h2>{{ formation.title }}</h2>
+                  <p class="category">{{ formation.category }}</p>
+                </div>
+                <p class="description">{{ formation.description }}</p>
+                <div class="formation-details">
+                  <p>Duration: {{ formation.duration }}</p>
+                  <p>Level: {{ formation.level }}</p>
+                  <p>Date: {{ formation.date | date }}</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn btn-danger" (click)="deleteFormation(formation._id)">
+                    <i class="fas fa-trash-alt"></i> Delete
+                  </button>
+                  <a class="btn btn-primary" [href]="'/formation/' + formation._id + '/viewadmin'">
+                    <i class="fas fa-eye"></i> View
+                  </a>
+                  <a class="btn btn-outline-dark" [href]="'/formation/' + formation._id + '/edit'">
+                    <i class="fas fa-edit"></i> Edit
+                  </a>
+                  <a class="btn btn-outline-dark" [routerLink]="['/formation', formation._id, 'ajoutcours']">
+                    <i class="fas fa-edit"></i> add course
+                  </a>
+                </div>
+              </div>
+       
+            
+ 
+              
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    
+      
+
+    </div>
+  </div>
+  <app-footer-admin></app-footer-admin>
+    
+
+
+  <!-- Menu latéral -->
+  
+<style>/* Styles pour le bouton View */
+.body{
+margin: auto;
+}
+.col-lg-8{
+  margin-top: -950px;
+}
+.col-lg-6 mb-4 mb-lg-0{
+  margin-top: -750px;
+}
+  .formation-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .formation-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .formation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .formation-header h2 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin: 0;
+  }
+  
+  .formation-header .category {
+    font-size: 0.9em;
+    color: #95a5a6;
+    margin: 0;
+  }
+  
+  .description {
+    font-size: 1em;
+    color: #7f8c8d;
+    margin: 10px 0;
+  }
+  
+  .formation-details {
+    font-size: 0.9em;
+    color: #bdc3c7;
+    margin: 10px 0;
+  }
+  
+  .formation-details p {
+    margin: 5px 0;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #007bff;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+  
+  </style>
+

@@ -1,0 +1,37 @@
+
+<div class="body">
+  <div class="site-section-cover overlay" style="background-image: url('assets/images/hero_bg.jpg');">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h1>The <strong>Hub</strong> Of <strong>Tutorials</strong></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br><br><br>
+<br>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom">Nom:</label>
+          <input type="text" id="nom" formControlName="nom" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" formControlName="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-2">{{ errorMessage }}</div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

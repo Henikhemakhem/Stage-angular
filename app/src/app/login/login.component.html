@@ -1,0 +1,42 @@
+<div class="body">
+  <div class="site-section-cover overlay" style="background-image: url('assets/images/hero_bg.jpg');">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h1>The <strong>Hub</strong> Of <strong>Tutorials</strong></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" formControlName="password" class="form-control">
+        </div>
+        <div class="form-group d-flex justify-content-between align-items-center">
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+
+        </div>
+
+
+        <div *ngIf="errorMessage" class="alert alert-danger mt-2">{{ errorMessage }}</div>
+
+      </form>
+      <button class="btn btn-primary" (click)="sign()">
+        <i class="fab fa-google"></i> SIGN IN WITH GOOGLE
+      </button>
+      
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

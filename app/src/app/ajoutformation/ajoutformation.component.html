@@ -1,0 +1,83 @@
+<app-layout-admin></app-layout-admin>
+
+<div class="body">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+    
+    </div>
+ 
+  </div>
+  <div class="container mt-5">
+    
+    <div class="row justify-content-center">
+      
+      <div class="col-lg-8">
+        <div class="col-lg-10 text-center">
+          <h1>The <strong>Hub</strong> Of <strong>Tutorials</strong></h1>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+          <!-- Formulaire -->
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" formControlName="title" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" id="description" formControlName="description" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" formControlName="category" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="duration">Duration:</label>
+            <input type="text" id="duration" formControlName="duration" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="level">Level:</label>
+            <input type="text" id="level" formControlName="level" class="form-control" required>
+          </div>
+          <div class="form-group" *ngIf="!idcourant">
+            <label for="image">Image:</label>
+            <input type="file" id="image" (change)="onFileSelected($event)" formControlName="image" class="form-control-file" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-footer-admin></app-footer-admin>
+<style>
+  /* Assurez-vous que le HTML et le body prennent toute la hauteur */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+.col-lg-8{
+  margin-top: -750px;
+}
+  /* Appliquez une hauteur minimum de 100vh au layout principal pour qu'il prenne toute la hauteur de la fenêtre */
+  .body {
+    background-color: rgba(214, 214, 214, 0.16);
+     /* Assure que le conteneur prend toute la hauteur visible */
+    margin-top: -750px; /* Supprime les marges par défaut */
+   /* Ajoute un peu de padding pour le contenu */
+  }
+
+  /* Styles spécifiques pour le conteneur */
+  .container {
+    max-width: 1200px;
+    margin: auto; /* Centrage horizontal du conteneur */
+    padding: 20px; /* Ajoute un peu de padding interne */
+
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem; /* Espacement entre les groupes de formulaire */
+  }
+
+  /* Ajoutez d'autres styles personnalisés selon vos préférences */
+</style>

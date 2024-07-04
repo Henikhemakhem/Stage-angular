@@ -1,0 +1,81 @@
+<app-layout-admin></app-layout-admin>
+<div class="body">
+ 
+
+ 
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="nom">Nom du Cours:</label>
+            <input type="text" id="nom" formControlName="nom" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="explication">Explication:</label>
+            <textarea id="explication" formControlName="explication" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="pdf">pdf_url:</label>
+            <input type="text" id="pdf" formControlName="pdf" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="videos">Vidéos:</label>
+            <input type="file" id="videos" (change)="onFilesSelected($event)" multiple formControlName="videos" class="form-control-file">
+            <p *ngIf="invalidFileType" class="text-danger">Les fichiers doivent être au format MP4.</p>
+            <div *ngIf="selectedFiles.length > 0">
+              <p>Fichiers sélectionnés :</p>
+              <ul>
+                <li *ngFor="let file of selectedFiles; let i = index">
+                  {{ file.name }}
+                  <button type="button" class="btn btn-sm btn-danger" (click)="removeSelectedFile(i)"><i class="bi bi-file-earmark-excel-fill">X</i></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="videoUrl">Ajouter une vidéo via URL:</label>
+            <input type="text" id="videoUrl" formControlName="videoUrl" class="form-control">
+            <button type="button" class="btn btn-secondary mt-2" (click)="addVideoUrl()">Ajouter URL</button>
+            <div *ngIf="videoUrls.length > 0">
+              <p>URLs des vidéos ajoutées :</p>
+              <ul>
+                <li *ngFor="let url of videoUrls; let i = index">
+                  {{ url }}
+                  <button type="button" class="btn btn-sm btn-danger" (click)="removeVideoUrl(i)"><i class="bi bi-file-earmark-excel-fill">X</i></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+    <!-- formcours.component.html -->
+<button type="submit" class="btn btn-primary" [disabled]="isLoading">
+  <span *ngIf="!isLoading">Ajouter le Cours</span>
+  <span *ngIf="isLoading">
+    <i class="fa fa-spinner fa-spin"></i> Chargement...
+  </span>
+</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+
+</div>
+<app-footer-admin></app-footer-admin>
+<style>
+  .body {
+    background-color: rgba(214, 214, 214, 0.16);
+    
+  }
+.col-lg-8{
+  margin-top: -700px;
+}
+  .container {
+    max-width: 1200px;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+</style>

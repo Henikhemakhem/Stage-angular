@@ -1,0 +1,136 @@
+<app-layout-admin></app-layout-admin>
+
+
+   <div class="body">
+  <div class="content">
+ 
+      <div class="col-lg-10 text-center">
+        <h1>Learn <strong>{{titleform}}</strong></h1>
+        <p>
+          <span class="mr-2 mb-2">1hr 24m</span>
+          <span class="mr-2 mb-2">Advanced</span>
+          <span class="mr-2 mb-2">Jun 18, 2020</span>
+        </p>
+      </div>
+
+      <div class="site-section">
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-lg-12">
+              <!-- Ajoutez votre contenu ici -->
+            </div>
+          </div>
+
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <form class="d-flex search-form" (ngSubmit)="search()">
+              <input type="search" class="form-control mr-2" placeholder="Search subjects" [(ngModel)]="searchTerm" name="searchTerm">
+              <button type="button" class="btn btn-primary px-4" (click)="search()">Search</button>
+            </form>
+            <br><br><br>
+          </div>
+
+          <div *ngIf="courses.length > 0">
+            <ul class="list-unstyled tutorial-section-list">
+              <li *ngFor="let course of filteredcourse" class="course-item">
+                <h3>{{ course.nom }}</h3>
+                <p>{{ course.explication }}</p>
+                <div class="course-actions">
+                  <button class="btn btn-danger" (click)="deleteCourse(course._id)">Supprimer</button>
+                  <button class="btn btn-primary" *ngIf="!course.showVideos" (click)="showVideos(course)">Play Videos</button>
+                  <button class="btn btn-secondary" *ngIf="course.showVideos" (click)="hideVideos(course)">Hide Videos</button>
+                  <button class="btn btn-primary" *ngIf="!course.showpdf" (click)="showpdf(course)">
+                    <img src="assets/images/pdf-icon.png" alt="PDF Icon" class="pdf-icon"> Show Course
+                  </button>
+                  <button class="btn btn-secondary" *ngIf="course.showpdf" (click)="hidepdf(course)">
+                    <img src="assets/images/pdf-icon.png" alt="PDF Icon" class="pdf-icon"> Hide Course
+                  </button>
+                </div>
+
+                <div *ngIf="course.showVideos" class="video-container">
+                  <ul class="list-unstyled video-list">
+                    <li *ngFor="let video of course.videos" class="video-item">
+                      <div *ngIf="!isYouTubeVideo(video)" class="video-wrapper">
+                        <video width="320" height="240" controls>
+                          <source [src]="video.safeUrl || video.url" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                      <div *ngIf="isYouTubeVideo(video)" class="video-wrapper">
+                        <iframe width="320" height="240" [src]="getYouTubeEmbedUrl(video.url)" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div *ngIf="course.showpdf" class="pdf-section">
+                  <a [href]="course.pdf" target="_blank" *ngIf="course.pdf">
+                    <img src="assets/images/pdf-icon.png" alt="PDF Icon" class="pdf-preview"> View PDF
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="site-section bg-light">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="heading mb-4">
+                    <span class="caption">Related</span>
+                    <h2>Related Tutorials</h2>
+                  </div>
+                </div>
+
+                <!-- Boucle sur les formations filtrées -->
+                <div class="col-lg-8" *ngFor="let formation of formation">
+                  <!-- Exclure la formation actuelle en comparant avec formationId -->
+                  <div class="formation-card" *ngIf="formation._id !== formationId">
+                    <img [src]="formation.image" alt="{{ formation.title }}" width="200">
+                    <div class="formation-header">
+                      <h2>{{ formation.title }}</h2>
+                      <p class="category">{{ formation.category }}</p>
+                    </div>
+                    <p class="description">{{ formation.description }}</p>
+                    <div class="formation-details">
+                      <p>Duration: {{ formation.duration }}</p>
+                      <p>Level: {{ formation.level }}</p>
+                      <p>Date: {{ formation.date | date }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer-admin></app-footer-admin>
+<style>
+
+
+/* Barre latérale */
+
+/* Contenu principal */
+.content {
+  flex-grow: 1;
+  padding: 20px; /* Ajoutez de l'espace autour du contenu principal */
+  margin-top: -700px;
+}
+
+/* Styles spécifiques pour l'élément de contenu */
+.body {
+    display: flex;
+  position: relative;
+
+}
+
+/* Assurez-vous que les boutons et les champs de saisie sont bien positionnés */
+.btn, input {
+  position: relative;
+  z-index: 1; /* Assurez que ces éléments sont au-dessus d'autres contenus si nécessaire */
+}
+
+
+</style>
